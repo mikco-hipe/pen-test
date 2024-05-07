@@ -6,13 +6,21 @@ on:
       - main
 
 jobs:
-  security_scan:
+  build_and_security_scan:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Build Docker image
+        run: docker build -t pen-test .
+
+      - name: Run Docker container
+        run: docker run -d -p 3030:3030 --name pen-test-container pen-test
+
       - name: Run ZAP Security Scan
         run: docker run -t --network="host" ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3030
 
+      - name: Stop and remove Docker container
+        run: docker stop pen-test-container && docker rm pen-test-container
