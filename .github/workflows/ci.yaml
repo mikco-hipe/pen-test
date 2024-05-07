@@ -22,7 +22,7 @@ jobs:
           docker rm pen-test-container || true
 
       - name: Run Docker container
-        run: docker run -d -p 8080:3030 --name pen-test-container pen-test
+        run: docker run -d -p 3030:3030 --name pen-test-container pen-test
 
       - name: Run ZAP Security Scan
         run: docker run -t --network="host" ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3030 || true
