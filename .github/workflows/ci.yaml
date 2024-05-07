@@ -1,0 +1,17 @@
+name: Security Scan
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  security_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run ZAP Security Scan
+        run: docker run -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://localhost:3001/
