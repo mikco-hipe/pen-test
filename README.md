@@ -23,3 +23,6 @@ To get started with this project, follow these steps:
 2. Run the make command
     ```bash
     make zap-scan
+
+Sample Output
+<img width="1440" alt="Screenshot 2024-05-07 at 5 06 12 PM" src="https://github.com/mikco-hipe/pen-test/assets/144191092/5d02e5ab-fbda-4c73-ba57-23927c996151">
